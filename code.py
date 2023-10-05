@@ -6,10 +6,10 @@ import pwmio
 
 from adafruit_motor import motor
 
-left_motor_forward = board.GP12
-left_motor_backward = board.GP13
-right_motor_forward = board.GP14
-right_motor_backward = board.GP15
+left_motor_forward = board.GP15
+left_motor_backward = board.GP14
+right_motor_forward = board.GP12
+right_motor_backward = board.GP13
 
 pwm_La = pwmio.PWMOut(left_motor_forward, frequency=10000)
 pwm_Lb = pwmio.PWMOut(left_motor_backward, frequency=10000)
@@ -26,23 +26,29 @@ Right_Motor_speed = 0
 while True:
 
 
-    Left_Motor_speed = -1 #Makes let motor go forward
+#Both  forward
+    Right_Motor_speed = .5 #Makes right motor go forward
+    Right_Motor.throttle = Right_Motor_speed
+    Left_Motor_speed = .5 #Makes left motor go forward
     Left_Motor.throttle = Left_Motor_speed
     time.sleep(2)
-    Left_Motor_speed = 1 #Makes left motor go backward
+#Both backward
+    Left_Motor_speed = -.5 #Makes let motor go backward
+    Left_Motor.throttle = Left_Motor_speed
+    Right_Motor_speed = -.5 #Makes right motor go backward
+    Right_Motor.throttle = Right_Motor_speed
+    time.sleep(2)    
+#Both left
+    Left_Motor_speed = 0 #Makes left motor go forward
+    Left_Motor.throttle = Left_Motor_speed
+    time.sleep(0)
+    Right_Motor_speed = .5 #Makes right motor go forward
+    Right_Motor.throttle = Right_Motor_speed
+    time.sleep(1)
+#Both right
+    Right_Motor_speed =0 #Makes right motor go forward
+    Right_Motor.throttle = Right_Motor_speed
+    time.sleep(0)
+    Left_Motor_speed = 0.5 #Makes left motor go forward
     Left_Motor.throttle = Left_Motor_speed
     time.sleep(2)
-
-    Right_Motor_speed = -1 #Makes right motor go forward
-    Right_Motor.throttle = Right_Motor_speed
-    time.sleep(2)
-    Right_Motor_speed = 1 Makes right motor go backward
-    Right_Motor.throttle = Right_Motor_speed
-    time.sleep(2)
-"""Right_Motor_speed = -1
-    Right_Motor.throttle = Right_Motor_speed
-    time.sleep(2)
-    Right_Motor_speed = 1
-    Right_Motor.throttle = Right_Motor_speed
-    time.sleep(2)
-    """# Write your code here :-)
